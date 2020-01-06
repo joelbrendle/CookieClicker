@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Nici Cookie Clicker Fake</title>
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            #title-field {
+                text-align: center;
+            }
+
+            #left-field {
+                height: 630px;
+                width: 49.5%;
+                float: left;
+            }
+            
+            #clicker-field {
+                background-color: brown;
+                height: 400px;
+                width: 100%;
+                text-align: center;
+            }
+
+            #cookieswert {
+                color: white;
+                padding-top: 30px;
+                font-size: 25px;
+            }
+
+            #clicker-field button {
+                height: 200px;
+                width: 200px;
+                margin-top: 8%;
+                background-image: url("pic.jpg");
+                background-size: 220px;
+                background-repeat: no-repeat;
+                font-size: 30px;
+                font-weight: 700;
+            }
+
+            #score-field {
+                background-color: blueviolet;
+                height: 220px;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            #right-field {
+                background-color: royalblue;
+                height: 630px;
+                width: 49.5%;
+                margin-left: 50.5%;
+            }
+
+            .mut-alle {
+                padding: 30px;
+            }
+
+            #right-field button {
+                float: left;
+            }
+
+            .mut-alle-div {
+                float: left;
+                margin-left: 10px;
+            }
+        </style>
+        <script>
+            if(localStorage.einmal2!=1) {
+                localStorage.wert = 1;
+                localStorage.mut1counter = 0;
+                localStorage.mut1price = 100;
+                localStorage.mut2counter = 0;
+                localStorage.mut2price = 1000;
+                localStorage.einmal2=1;
+            }
+            function site_Load() {
+                document.getElementById("result").innerHTML = localStorage.cookies;
+                document.getElementById("cookieswert").innerHTML = "pro Klick: " + localStorage.wert;
+                document.getElementById("mut1price").innerHTML = "kosten: " + localStorage.mut1price;
+                document.getElementById("mut1score").innerHTML = "Gekauft: " + localStorage.mut1counter;
+                document.getElementById("mut2price").innerHTML = "kosten: " + localStorage.mut2price;
+                document.getElementById("mut2score").innerHTML = "Gekauft: " + localStorage.mut2counter;
+            }
+            function cookiesButton() {
+                if(localStorage.cookies) {
+                    
+                    localStorage.cookies = Number(localStorage.cookies)+Number(localStorage.wert);
+                } else {
+                    localStorage.cookies = 1;
+                }
+                document.getElementById("result").innerHTML = localStorage.cookies;
+                document.getElementById("cookieswert").innerHTML = "pro Klick: " + localStorage.wert;
+            }
+            function mut1() {
+                if(Number(localStorage.cookies)>=Number(localStorage.mut1price)) {
+                    localStorage.cookies = Number(localStorage.cookies)-Number(localStorage.mut1price);
+                    localStorage.wert++;
+                    localStorage.mut1counter++;
+                    localStorage.mut1price = localStorage.mut1price*1.5;
+                }
+                localStorage.mut1price = Math.round(localStorage.mut1price);
+                document.getElementById("result").innerHTML = localStorage.cookies;
+                document.getElementById("mut1price").innerHTML = "kosten: " + localStorage.mut1price;
+                document.getElementById("mut1score").innerHTML = "Gekauft: " + localStorage.mut1counter;
+                document.getElementById("cookieswert").innerHTML = "pro Klick: " + localStorage.wert;
+            }
+            function mut2() {
+                if(Number(localStorage.cookies)>=Number(localStorage.mut2price)) {
+                    localStorage.cookies = Number(localStorage.cookies)-Number(localStorage.mut2price);
+                    localStorage.mut2counter++;
+                    localStorage.mut2price = localStorage.mut2price*2;
+                }
+            }
+        </script>
+    </head>
+    <body onload="site_Load()">
+        <div id="title-field">
+            <h1>Nici Cookie Clicker Fake</h1>
+        </div>
+        <div id="left-field">
+            <div id="clicker-field">
+                <div id="cookieswert"></div>
+                <button onclick="cookiesButton()" type="button">
+                    <div id="result"></div>
+                </button>
+            </div>
+            <div id="score-field">
+            </div>
+        </div>
+        <div id="right-field">
+            <div class="mut-alle" id="mut1">
+                <button onclick="mut1()" type="button">+1</button>
+                <div class="mut-alle-div" id="mut1price"></div> 
+                <div class="mut-alle-div" id="mut1score"></div>
+            </div>
+            <div class="mut-alle" id="mut2">
+                <button onclick="mut2()" type="button">+1</button>
+                <div class="mut-alle-div" id="mut2price"></div>
+                <div class="mut-alle-div" id="mut2score"></div>
+            </div>
+        </div>
+    </body>
+</html>
