@@ -81,9 +81,10 @@
             }
         </style>
         <script>
-            //localStorage.einmal2 = 0;
+            localStorage.einmal2 = 0;
             mut1desc = "Pro Klick einen Cube mehr ;D<br>";
             mut2desc = "Pro Sekunde 1 Cubes mehr<br>";
+            mut3desc = "Pro Sekunde 5 Cubes mehr<br>";
             if(localStorage.einmal2!=1) {
                 localStorage.wert = 1;
                 localStorage.mut1counter = 0;
@@ -91,9 +92,12 @@
                 localStorage.mut2counter = 0;
                 localStorage.mut2counterreal = 0;
                 localStorage.mut2price = 200;
+                localStorage.mut3counter = 0;
+                localStorage.mut3counterreal = 0;
+                localStorage.mut3price = 2000;
                 localStorage.sektakt = 0;
                 localStorage.einmal2 = 1;
-                localStorage.cookies = 0;
+                localStorage.cookies = 10000000;
             }
             function site_Load() {
                 //name abfrage
@@ -105,19 +109,21 @@
             }
             function renewDisplay() {
                 document.getElementById("result").innerHTML = localStorage.cookies;
-                document.getElementById("cookieswert").innerHTML = "pro Klick: " + localStorage.wert + "<br>pro Sekunde: " + localStorage.mut2counter;
+                document.getElementById("cookieswert").innerHTML = "pro Klick: " + localStorage.wert + "<br>pro Sekunde: " + (Number(localStorage.mut2counter) + Number(localStorage.mut3counter));
                 document.getElementById("mut1price").innerHTML = mut1desc + "kosten: " + localStorage.mut1price;
                 document.getElementById("mut1score").innerHTML = "<br>Gekauft: " + localStorage.mut1counter;
                 document.getElementById("mut2price").innerHTML = mut2desc + "kosten: " + localStorage.mut2price;
                 document.getElementById("mut2score").innerHTML = "<br>Gekauft: " + localStorage.mut2counter;
+                document.getElementById("mut3price").innerHTML = mut3desc + "kosten: " + localStorage.mut3price;
+                document.getElementById("mut3score").innerHTML = "<br>Gekauft: " + localStorage.mut3counter;
                 document.getElementById("scoreboard").innerHTML = "1. " + localStorage.username + " (" + localStorage.cookies + " Cubes)";
                 Sekundentakt();
             }
             function Sekundentakt() {
-                if(localStorage.sektakt==0 && localStorage.mut2counter>0) {
+                if(localStorage.sektakt==0 && (localStorage.mut2counter>0 || localStorage.mut3counter>0)) {
                     localStorage.sektakt=1;
                     setInterval(function(){ 
-                        cookies1 = Number(localStorage.cookies) + Number(localStorage.mut2counterreal);
+                        cookies1 = Number(localStorage.cookies) + (Number(localStorage.mut2counterreal) + Number(localStorage.mut3counterreal));
                         cookies1 = Math.round( cookies1 * 10 ) / 10;
                         localStorage.cookies = cookies1.toFixed(1);
                         renewDisplay();
@@ -156,6 +162,16 @@
                 localStorage.mut2price = Math.round(localStorage.mut2price);
                 renewDisplay();
             }
+            function mut3() {
+                if(Number(localStorage.cookies)>=Number(localStorage.mut3price)) {
+                    localStorage.cookies = Number(localStorage.cookies)-Number(localStorage.mut3price);
+                    localStorage.mut3counter = 5 + Number(localStorage.mut3counter);
+                    localStorage.mut3counterreal = Number(localStorage.mut3counterreal)+0.5;
+                    localStorage.mut3price = localStorage.mut3price*1.2;
+                }
+                localStorage.mut3price = Math.round(localStorage.mut3price);
+                renewDisplay();
+            }
         </script>
     </head>
     <body onload="site_Load()">
@@ -184,6 +200,11 @@
                 <button onclick="mut2()" type="button">+1</button>
                 <div class="mut-alle-div" id="mut2price"></div>
                 <div class="mut-alle-div" id="mut2score"></div>
+            </div>
+            <div class="mut-alle" id="mut3">
+                <button onclick="mut3()" type="button">+1</button>
+                <div class="mut-alle-div" id="mut3price"></div>
+                <div class="mut-alle-div" id="mut3score"></div>
             </div>
         </div>
     </body>
