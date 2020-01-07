@@ -87,9 +87,10 @@
             if(localStorage.einmal2!=1) {
                 localStorage.wert = 1;
                 localStorage.mut1counter = 0;
-                localStorage.mut1price = 80;
+                localStorage.mut1price = 40;
                 localStorage.mut2counter = 0;
-                localStorage.mut2price = 500;
+                localStorage.mut2counterreal = 0;
+                localStorage.mut2price = 200;
                 localStorage.sektakt = 0;
                 localStorage.einmal2 = 1;
                 localStorage.cookies = 0;
@@ -116,9 +117,11 @@
                 if(localStorage.sektakt==0 && localStorage.mut2counter>0) {
                     localStorage.sektakt=1;
                     setInterval(function(){ 
-                        localStorage.cookies=Number(localStorage.cookies)+Number(localStorage.mut2counter);
+                        cookies1 = Number(localStorage.cookies) + Number(localStorage.mut2counterreal);
+                        cookies1 = Math.round( cookies1 * 10 ) / 10;
+                        localStorage.cookies = cookies1.toFixed(1);
                         renewDisplay();
-                    }, 1000);
+                    }, 100);
                 }
             }
             function renewDisplay1() {
@@ -147,7 +150,8 @@
                 if(Number(localStorage.cookies)>=Number(localStorage.mut2price)) {
                     localStorage.cookies = Number(localStorage.cookies)-Number(localStorage.mut2price);
                     localStorage.mut2counter++;
-                    localStorage.mut2price = localStorage.mut2price*1.5;
+                    localStorage.mut2counterreal = Number(localStorage.mut2counterreal)+0.1;
+                    localStorage.mut2price = localStorage.mut2price*1.3;
                 }
                 localStorage.mut2price = Math.round(localStorage.mut2price);
                 renewDisplay();
