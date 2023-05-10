@@ -130,7 +130,7 @@ function mut4() {
 function mut5() {
     if(Number(localStorage.cookies)>=Number(localStorage.mut5price)) {
         localStorage.cookies = Number(localStorage.cookies)-Number(localStorage.mut5price);
-        localStorage.wert = 10 + Number(localStorage.mut5counter);
+        localStorage.wert = 10 + Number(localStorage.wert);
         localStorage.mut5counter = 10 + Number(localStorage.mut5counter);
         localStorage.mut5price = localStorage.mut5price*1.2;
     }
@@ -140,7 +140,7 @@ function mut5() {
 function mut6() {
     if(Number(localStorage.cookies)>=Number(localStorage.mut6price)) {
         localStorage.cookies = Number(localStorage.cookies)-Number(localStorage.mut6price);
-        localStorage.wert = 100 + Number(localStorage.mut6counter);
+        localStorage.wert = 100 + Number(localStorage.wert);
         localStorage.mut6counter = 100 + Number(localStorage.mut6counter);
         localStorage.mut6price = localStorage.mut6price*1.2;
     }
