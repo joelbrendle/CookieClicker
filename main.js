@@ -1,18 +1,28 @@
 
 mut1desc = "Pro Klick einen Cube mehr ;D<br>";
+mut5desc = "Pro Klick 10 Cube mehr ;D<br>";
+mut6desc = "Pro Klick 100 Cube mehr ;D<br>";
 mut2desc = "Pro Sekunde 1 Cubes mehr<br>";
 mut3desc = "Pro Sekunde 8 Cubes mehr<br>";
 mut4desc = "Pro Sekunde 30 Cubes mehr<br>";
+mut7desc = "Pro Sekunde 150 Cubes mehr<br>";
 if(localStorage.einmal2 != 1 && localStorage.einmal2 != 2) {
     localStorage.wert = 1;
     localStorage.mut1counter = 0;
     localStorage.mut1price = 40;
+    localStorage.mut5counter = 0;
+    localStorage.mut5price = 2000;
+    localStorage.mut6counter = 0;
+    localStorage.mut6price = 50000;
     localStorage.mut2counter = 0;
     localStorage.mut2counterreal = 0;
     localStorage.mut2price = 200;
     localStorage.mut3counter = 0;
     localStorage.mut3counterreal = 0;
     localStorage.mut3price = 2000;
+    localStorage.mut7counter = 0;
+    localStorage.mut7counterreal = 0;
+    localStorage.mut7price = 50000;
     localStorage.sektakt = 0;
     localStorage.einmal2 = 1;
     localStorage.cookies = 0;
@@ -42,6 +52,12 @@ function renewDisplay() {
     document.getElementById("mut3score").innerHTML = "<br>Gekauft: " + (Number(localStorage.mut3counter)/8);
     document.getElementById("mut4price").innerHTML = mut4desc + "kosten: " + localStorage.mut4price;
     document.getElementById("mut4score").innerHTML = "<br>Gekauft: " + (Number(localStorage.mut4counter)/30);
+    document.getElementById("mut5price").innerHTML = mut4desc + "kosten: " + localStorage.mut5price;
+    document.getElementById("mut5score").innerHTML = "<br>Gekauft: " + (Number(localStorage.mut5counter)/10);
+    document.getElementById("mut6price").innerHTML = mut4desc + "kosten: " + localStorage.mut6price;
+    document.getElementById("mut6score").innerHTML = "<br>Gekauft: " + (Number(localStorage.mut6counter)/100);
+    document.getElementById("mut7price").innerHTML = mut4desc + "kosten: " + localStorage.mut7price;
+    document.getElementById("mut7score").innerHTML = "<br>Gekauft: " + (Number(localStorage.mut7counter)/150);
     document.getElementById("scoreboard").innerHTML = "1. " + localStorage.username + " (" + localStorage.cookies + " Cubes)";
     Sekundentakt();
 }
@@ -109,6 +125,36 @@ function mut4() {
         localStorage.mut4price = localStorage.mut4price*1.2;
     }
     localStorage.mut4price = Math.round(localStorage.mut4price);
+    renewDisplay();
+}
+function mut5() {
+    if(Number(localStorage.cookies)>=Number(localStorage.mut5price)) {
+        localStorage.cookies = Number(localStorage.cookies)-Number(localStorage.mut5price);
+        localStorage.mut5counter = 10 + Number(localStorage.mut5counter);
+        localStorage.mut5counterreal = Number(localStorage.mut5counterreal)+3;
+        localStorage.mut5price = localStorage.mut5price*1.2;
+    }
+    localStorage.mut5price = Math.round(localStorage.mut5price);
+    renewDisplay();
+}
+function mut6() {
+    if(Number(localStorage.cookies)>=Number(localStorage.mut6price)) {
+        localStorage.cookies = Number(localStorage.cookies)-Number(localStorage.mut6price);
+        localStorage.mut6counter = 100 + Number(localStorage.mut6counter);
+        localStorage.mut6counterreal = Number(localStorage.mut6counterreal)+3;
+        localStorage.mut6price = localStorage.mut6price*1.2;
+    }
+    localStorage.mut6price = Math.round(localStorage.mut6price);
+    renewDisplay();
+}
+function mut7() {
+    if(Number(localStorage.cookies)>=Number(localStorage.mut7price)) {
+        localStorage.cookies = Number(localStorage.cookies)-Number(localStorage.mut7price);
+        localStorage.mut7counter = 150 + Number(localStorage.mut7counter);
+        localStorage.mut7counterreal = Number(localStorage.mut7counterreal)+3;
+        localStorage.mut7price = localStorage.mut7price*1.2;
+    }
+    localStorage.mut7price = Math.round(localStorage.mut7price);
     renewDisplay();
 }
 
