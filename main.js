@@ -43,7 +43,7 @@ function site_Load() {
 }
 function renewDisplay() {
     document.getElementById("result").innerHTML = localStorage.cookies;
-    document.getElementById("cookieswert").innerHTML = "pro Klick: " + localStorage.wert + "<br>pro Sekunde: " + (Number(localStorage.mut2counter) + Number(localStorage.mut3counter) + (Number(localStorage.mut4counter)));
+    document.getElementById("cookieswert").innerHTML = "pro Klick: " + localStorage.wert + "<br>pro Sekunde: " + (Number(localStorage.mut2counter) + Number(localStorage.mut3counter) + (Number(localStorage.mut4counter)) + (Number(localStorage.mut7counter)));
     document.getElementById("mut1price").innerHTML = mut1desc + "kosten: " + localStorage.mut1price;
     document.getElementById("mut1score").innerHTML = "<br>Gekauft: " + localStorage.mut1counter;
     document.getElementById("mut2price").innerHTML = mut2desc + "kosten: " + localStorage.mut2price;
@@ -151,7 +151,7 @@ function mut7() {
     if(Number(localStorage.cookies)>=Number(localStorage.mut7price)) {
         localStorage.cookies = Number(localStorage.cookies)-Number(localStorage.mut7price);
         localStorage.mut7counter = 150 + Number(localStorage.mut7counter);
-        localStorage.mut7counterreal = Number(localStorage.mut7counterreal)+3;
+        localStorage.mut7counterreal = Number(localStorage.mut7counterreal)+150;
         localStorage.mut7price = localStorage.mut7price*1.2;
     }
     localStorage.mut7price = Math.round(localStorage.mut7price);
