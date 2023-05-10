@@ -52,11 +52,11 @@ function renewDisplay() {
     document.getElementById("mut3score").innerHTML = "<br>Gekauft: " + (Number(localStorage.mut3counter)/8);
     document.getElementById("mut4price").innerHTML = mut4desc + "kosten: " + localStorage.mut4price;
     document.getElementById("mut4score").innerHTML = "<br>Gekauft: " + (Number(localStorage.mut4counter)/30);
-    document.getElementById("mut5price").innerHTML = mut4desc + "kosten: " + localStorage.mut5price;
+    document.getElementById("mut5price").innerHTML = mut5desc + "kosten: " + localStorage.mut5price;
     document.getElementById("mut5score").innerHTML = "<br>Gekauft: " + (Number(localStorage.mut5counter)/10);
-    document.getElementById("mut6price").innerHTML = mut4desc + "kosten: " + localStorage.mut6price;
+    document.getElementById("mut6price").innerHTML = mut6desc + "kosten: " + localStorage.mut6price;
     document.getElementById("mut6score").innerHTML = "<br>Gekauft: " + (Number(localStorage.mut6counter)/100);
-    document.getElementById("mut7price").innerHTML = mut4desc + "kosten: " + localStorage.mut7price;
+    document.getElementById("mut7price").innerHTML = mut7desc + "kosten: " + localStorage.mut7price;
     document.getElementById("mut7score").innerHTML = "<br>Gekauft: " + (Number(localStorage.mut7counter)/150);
     document.getElementById("scoreboard").innerHTML = "1. " + localStorage.username + " (" + localStorage.cookies + " Cubes)";
     Sekundentakt();
