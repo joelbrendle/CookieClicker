@@ -62,10 +62,10 @@ function renewDisplay() {
     Sekundentakt();
 }
 function Sekundentakt() {
-    if(localStorage.sektakt==0 && (localStorage.mut2counter>0 || localStorage.mut3counter>0 || localStorage.mut4counter>0)) {
+    if(localStorage.sektakt==0 && (localStorage.mut2counter>0 || localStorage.mut3counter>0 || localStorage.mut4counter>0 || localStorage.mut7counter>0)) {
         localStorage.sektakt=1;
         setInterval(function(){ 
-            cookies1 = Number(localStorage.cookies) + (Number(localStorage.mut2counterreal) + Number(localStorage.mut3counterreal) + Number(localStorage.mut4counterreal));
+            cookies1 = Number(localStorage.cookies) + (Number(localStorage.mut2counterreal) + Number(localStorage.mut3counterreal) + Number(localStorage.mut4counterreal) + Number(localStorage.mut7counterreal));
             cookies1 = Math.round( cookies1 * 10 ) / 10;
             localStorage.cookies = cookies1.toFixed(1);
             renewDisplay();
